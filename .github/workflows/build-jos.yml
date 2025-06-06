@@ -39,7 +39,7 @@ jobs:
         podman run --rm \
           -v $(pwd)/jos:/src:Z \
           jos-build \
-          make
+          /bin/bash --login -c make
 
     - name: List build artifacts
       run: |
