@@ -1,0 +1,51 @@
+name: Build MIT JOS Operating System
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  build-jos:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install Podman
+      run: |
+        DEBIAN_FRONTEND=noninteractive sudo apt-get update
+        DEBIAN_FRONTEND=noninteractive sudo apt-get install --no-install-recommends -y podman
+
+    - name: Verify Podman installation
+      run: |
+        podman --version
+        podman info
+
+    - name: Clone MIT JOS repository
+      run: |
+        git clone -c http.sslVerify=false https://pdos.csail.mit.edu/6.828/2018/jos.git
+        ls -la jos/
+
+    - name: Build Docker image
+      run: |
+        podman build -t jos-build .
+
+    - name: Run JOS build in container
+      run: |
+        podman run --rm \
+          -v $(pwd)/jos:/src:Z \
+          jos-build \
+          make
+
+    - name: List build artifacts
+      run: |
+        echo "Build completed. Listing contents:"
+        ls -la jos/
+        echo ""
+        echo "Container image size:"
+        podman images jos-build --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}"
+
