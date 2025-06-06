@@ -3,7 +3,7 @@ FROM ubuntu:noble-20250415.1
 WORKDIR /root
 
 # Add all needed packages here.
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y build-essential libtool libglib2.0-dev libpixman-1-dev zlib1g-dev git libfdt-dev gcc-multilib gdb curl mtools dosfstools
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y build-essential libtool libglib2.0-dev libpixman-1-dev zlib1g-dev git libfdt-dev gcc-multilib gdb curl mtools dosfstools ca-certificates
 RUN apt-get clean
 
 #### Download, build, install, and test Python 2.7.18

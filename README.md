@@ -14,6 +14,11 @@ The Dockerfile prepares build tools from a modern Ubuntu release, to work with t
   - download some extra Ubuntu packages like `mtools` and `dosfstools`, which were probably part of other packages back when the JOS directions were written.
   - delete package and build files to shrink the size of the final container.
 
+## System Requirements
+
+  - Docker (or compatible software like Podman)
+  - At least 2 GB of space. The container image is about 1.22 GB in size, but you'll need extra space for your source code and built operating system files.
+
 ## License
 
 Creative Commons Zero v1.0 license (which is basically public domain, no copyright). For full license text, see LICENSE file.
@@ -30,5 +35,6 @@ It's unlikely that this project will continue to receive maintenance, as JOS isn
 
   - [JOS setup guide](https://deepwiki.com/woai3c/MIT6.828/1.1-installation-and-setup). Accessed 2025-06-06. This document appears to be an AI-generated English translation of [this Chinese installation guide](https://github.com/woai3c/MIT6.828/blob/4a51f62b/docs/install.md), updated 2020-02-20 and accessed 2025-06-06.
   - [Dockerfile from a student's solution code](https://github.com/phlalx/jos/blob/master/Dockerfile). Published 2018-08-01. Accessed 2025-06-06. This `Dockerfile` uses Ubuntu 14, which reached its end-of-life on [April 30, 2024](https://canonical.com/blog/ubuntu-14-04-and-16-04-lifecycle-extended-to-ten-years). Therefore, my `Dockerfile` is substantially different.
-  - Francisco Jiménez Cabrera. [We reduced our Docker images by 60% with –no-install-recommends](https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends). Published 2019-11-15. Accessed 2025-06-06.
+  - Francisco Jiménez Cabrera. [We reduced our Docker images by 60% with –no-install-recommends](https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends). Published 2019-11-15. Accessed 2025-06-06. I used this resource to shrink the size of the container image.
+  - [How do I deal with certificates using curl when trying to access an HTTPS url?](https://stackoverflow.com/a/13400988). Stack Overflow. Answer published 2017-02-14. Accessed 2025-06-06. I used this resource to 
 
